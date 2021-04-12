@@ -1,4 +1,8 @@
 <?php
+namespace App\Classes\Entity;
+
+use PDO;
+use PDOException;
 
 class DB{
 
