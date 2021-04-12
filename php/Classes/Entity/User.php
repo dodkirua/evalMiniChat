@@ -11,6 +11,9 @@ class User{
     private ?string $password;
     private ?string $mail;
     private ?string $image;
+    private ?bool $validation;
+    private ?string $key;
+    private ?bool $dataAutorisation;
 
     /**
      * User constructor.
@@ -43,8 +46,7 @@ class User{
      * @param string|null $password
      * @return User
      */
-    public function setPassword(?string $password): User
-    {
+    public function setPassword(?string $password): User    {
         $this->password = $password;
         return $this;
     }
@@ -54,8 +56,7 @@ class User{
      * @param string|null $mail
      * @return User
      */
-    public function setMail(?string $mail): User
-    {
+    public function setMail(?string $mail): User    {
         $this->mail = $mail;
         return $this;
     }
@@ -65,8 +66,7 @@ class User{
      * @param string|null $image
      * @return User
      */
-    public function setImage(?string $image): User
-    {
+    public function setImage(?string $image): User    {
         $this->image = $image;
         return $this;
     }
@@ -75,8 +75,7 @@ class User{
      * get id
      * @return int
      */
-    public function getId(): int
-    {
+    public function getId(): int    {
         return $this->id;
     }
 
@@ -84,8 +83,7 @@ class User{
      * get username
      * @return string|null
      */
-    public function getUsername(): ?string
-    {
+    public function getUsername(): ?string    {
         return $this->username;
     }
 
@@ -93,8 +91,7 @@ class User{
      * get password
      * @return string|null
      */
-    public function getPassword(): ?string
-    {
+    public function getPassword(): ?string    {
         return $this->password;
     }
 
@@ -102,8 +99,7 @@ class User{
      * get mail
      * @return string|null
      */
-    public function getMail(): ?string
-    {
+    public function getMail(): ?string    {
         return $this->mail;
     }
 
@@ -111,9 +107,72 @@ class User{
      * get image
      * @return string|null
      */
-    public function getImage(): ?string
-    {
+    public function getImage(): ?string    {
         return $this->image;
+    }
+
+    /**
+     * set validation
+     * @param int|null $validation
+     * @return User
+     */
+    public function setValidation(?int $validation): User    {
+        if ($validation === 0){
+            $this->validation = false;
+        }
+        else{
+            $this->validation = true;
+        }
+        return $this;
+    }
+
+    /**
+     * set validation key
+     * @param string|null $key
+     * @return User
+     */
+    public function setKey(?string $key): User    {
+        $this->key = $key;
+        return $this;
+    }
+
+    /**
+     * set data autorisation
+     * @param int|null $dataAutorisation
+     * @return User
+     */
+    public function setDataAutorisation(?int $dataAutorisation): User    {
+        if ($dataAutorisation === 0){
+            $this->dataAutorisation = false;
+        }
+        else{
+            $this->dataAutorisation = true;
+        }
+        return $this;
+    }
+
+    /**
+     * get validation
+     * @return bool|null
+     */
+    public function getValidation(): ?bool    {
+        return $this->validation;
+    }
+
+    /**
+     * get key
+     * @return string|null
+     */
+    public function getKey(): ?string    {
+        return $this->key;
+    }
+
+    /**
+     * get data autorisation
+     * @return bool|null
+     */
+    public function getDataAutorisation(): ?bool    {
+        return $this->dataAutorisation;
     }
 
 
