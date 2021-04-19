@@ -5,7 +5,6 @@ namespace App\Classes\Manager;
 
 use App\Classes\Entity\DB;
 use App\Classes\Entity\Message;
-use PDO;
 use DateTime;
 
 class MessageManager{

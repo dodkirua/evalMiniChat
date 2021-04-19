@@ -5,7 +5,7 @@ namespace App\Classes\Manager;
 
 use App\Classes\Entity\DB;
 use App\Classes\Entity\PrivateMessage;
-use PDO;
+
 
 class PrivateMessageManager{
     /**
