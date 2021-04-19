@@ -3,7 +3,6 @@
 
 namespace App\Classes\Entity;
 
-
 class Message{
     private int $id;
     private ?string $text;
@@ -112,5 +111,17 @@ ENGINE = InnoDB
         return $this->chatRoom;
     }
 
+    /**
+    * get a array with information
+    * @return array
+    */
+    public function getData() : array    {
+        $array['id'] = $this->getId();
+        $array['text'] = $this->getText();
+        $array['date'] = $this->getDate();
+        $array['user_id'] = $this->getUserID();
+        $array['chat_room_id'] = $this->getChatRoom();
 
+        return $array;
+    }
 }

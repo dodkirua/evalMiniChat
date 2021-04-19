@@ -3,7 +3,6 @@
 
 namespace App\Classes\Entity;
 
-
 class PrivateMessage{
     private int $id;
     private ?int $messageID;
@@ -85,6 +84,17 @@ class PrivateMessage{
         return $this;
     }
 
+    /**
+     * get a array with information
+     * @return array
+     */
+    public function getData() : array{
+        $array['id'] = $this->getId();
+        $array['message_id'] = $this->getMessageID();
+        $array['user_id'] = $this->getUser1ID();
+        $array['user2_id'] = $this->getUser2ID();
 
+        return $array;
+    }
 
 }

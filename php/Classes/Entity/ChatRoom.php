@@ -3,7 +3,6 @@
 
 namespace App\Classes\Entity;
 
-
 class ChatRoom{
     private int $id;
     private ?string $name;
@@ -11,9 +10,11 @@ class ChatRoom{
     /**
      * ChatRoom constructor.
      * @param int $id
+     * @param string $name
      */
-    public function __construct(int $id)    {
+    public function __construct(int $id,string $name)    {
         $this->id = $id;
+        $this->name = $name;
     }
 
     /**
@@ -42,6 +43,17 @@ class ChatRoom{
     public function setName(?string $name): ChatRoom    {
         $this->name = $name;
         return $this;
+    }
+
+    /**
+     * get a array with information
+     * @return array*
+     */
+    public function getData() : array{
+        $array['id'] = $this->getId();
+        $array['name'] = $this->getName();
+
+        return $array;
     }
 
 
