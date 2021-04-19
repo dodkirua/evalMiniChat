@@ -21,13 +21,19 @@ class User{
      * @param string|null $password
      * @param string|null $mail
      * @param string|null $image
+     * @param bool|null $validation
+     * @param string|null $key
+     * @param bool|null $dataAutorisation
      */
-    public function __construct(int $id, ?string $username , ?string $password, ?string $mail, ?string $image)    {
+    public function __construct(int $id, string $username , string $password, string $mail, ?string $image, ?bool $validation, ?string $key, ?bool $dataAutorisation)    {
         $this->id = $id;
         $this->username = $username;
         $this->password = $password;
         $this->mail = $mail;
         $this->image = $image;
+        $this->validation = $validation;
+        $this->key = $key;
+        $this->dataAutorisation = $dataAutorisation;
     }
 
     /**

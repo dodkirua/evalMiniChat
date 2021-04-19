@@ -36,7 +36,7 @@ class UserManager{
         $request->execute();
         $item = $request->fetch();
         if ($item){
-            return new Message($id,$item['username'],$item['password'],$item['mail'],$item['image'],$item['validation'],$item['key'],$item['data_autorisation']);
+            return new User($id,$item['username'],$item['password'],$item['mail'],$item['image'],$item['validation'],$item['key'],$item['data_autorisation']);
 
         }
         return null;
