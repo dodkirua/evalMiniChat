@@ -13,7 +13,7 @@ class ChatRoomManager{
      * return a list of classroom
      * @return array
      */
-    public function getChatRooms(): array {
+    public function getAll(): array {
     $chatRoom = [];
     $request = DB::getInstance()->prepare("SELECT * FROM chat_room");
     $request->execute();
@@ -32,7 +32,7 @@ class ChatRoomManager{
      * @param int $id
      * @return ChatRoom|null
      */
-    public function getChatRoom(int $id) : ?ChatRoom {
+    public function get(int $id) : ?ChatRoom {
         $request = DB::getInstance()->prepare("SELECT * FROM chat_room WHERE id = :id");
         $request->bindValue(':id',$id);
         $request->execute();
@@ -49,7 +49,7 @@ class ChatRoomManager{
      * @param int $id
      * @return bool
      */
-    public function delChatRoom(int $id) : bool    {
+    public function del(int $id) : bool    {
         $request = DB::getInstance()->prepare("DELETE FROM chat_room WHERE id = :id");
         $request->bindValue(':id',$id);
         return $request->execute();
@@ -60,7 +60,7 @@ class ChatRoomManager{
      * @param string $name
      * @return bool
      */
-    public function addChatRoom(string $name): bool {
+    public function add(string $name): bool {
         $request = DB::getInstance()->prepare('
             INSERT INTO chat_room (name)
             VALUES (:name)');

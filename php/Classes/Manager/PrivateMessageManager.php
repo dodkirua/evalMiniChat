@@ -12,9 +12,9 @@ class PrivateMessageManager{
      * return a list of private message
      * @return array
      */
-    public function getPrivateMessages(): array {
+    public function getAll(): array {
         $chatRoom = [];
-        $request = DB::getInstance()->prepare("SELECT * FROM private_messsage");
+        $request = DB::getInstance()->prepare("SELECT * FROM private_message");
         $request->execute();
         $chatResponse= $request->fetchAll();
 
@@ -31,8 +31,8 @@ class PrivateMessageManager{
      * @param int $id
      * @return PrivateMessage|null
      */
-    public function getChatRoom(int $id) : ?PrivateMessage{
-        $request = DB::getInstance()->prepare("SELECT * FROM private_messsage WHERE id = :id");
+    public function get(int $id) : ?PrivateMessage{
+        $request = DB::getInstance()->prepare("SELECT * FROM private_message WHERE id = :id");
         $request->bindValue(':id',$id);
         $request->execute();
         $req = $request->fetch();
@@ -48,24 +48,26 @@ class PrivateMessageManager{
      * @param int $id
      * @return bool
      */
-    public function delChatRoom(int $id) : bool    {
-        $request = DB::getInstance()->prepare("DELETE FROM private_messsage WHERE id = :id");
+    public function del(int $id) : bool    {
+        $request = DB::getInstance()->prepare("DELETE FROM private_message WHERE id = :id");
         $request->bindValue(':id',$id);
         return $request->execute();
     }
 
     /**
      * add a chatroom
-     * @param string $name
+     * @param int $messageid
+     * @param int $userId
+     * @param int $user2Id
      * @return bool
      */
-    public function addChatRoom(string $name): bool {
+    public function add(int $messageid, int $userId, int $user2Id): bool {
         $request = DB::getInstance()->prepare('
-            INSERT INTO private_messsage (message_id, user_id, user2_id)
+            INSERT INTO private_message (message_id, user_id, user2_id)
             VALUES (:message_id, :user_id, :user2_id)');
-        $request->bindValue(':message_id',$name);
-        $request->bindValue(':user_id',$name);
-        $request->bindValue(':user2_id',$name);
+        $request->bindValue(':message_id',$messageid);
+        $request->bindValue(':user_id',$userId);
+        $request->bindValue(':user2_id',$user2Id);
         $request->execute();
         return intval(DB::getInstance()->lastInsertId()) !==0;
     }
