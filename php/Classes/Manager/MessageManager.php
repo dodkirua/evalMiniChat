@@ -57,7 +57,9 @@ class MessageManager{
 
     /**
      * add a chatroom
-     * @param string $name
+     * @param string $text
+     * @param int $userId
+     * @param int $chatRoomId
      * @return bool
      */
     public function add(string $text, int $userId , int $chatRoomId): bool {
