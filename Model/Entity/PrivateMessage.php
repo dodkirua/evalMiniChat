@@ -15,11 +15,11 @@ class PrivateMessage{
     /**
      * PrivateMessage constructor.
      * @param int|null $id
-     * @param int|null $messageID
+     * @param \Model\Entity\Message|null $messageID
      * @param \Model\Entity\User|null $user1
      * @param \Model\Entity\User|null $user2
      */
-    public function __construct(?int $id, ?int $messageID = null, ?User $user1 = null, ?User $user2 = null)    {
+    public function __construct(?int $id, ?Message $messageID = null, ?User $user1 = null, ?User $user2 = null)    {
         $this->id = $id;
         $this->message = $messageID;
         $this->user1 = $user1;

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Classes\Manager;
+namespace Model\Manager;
 
 use Model\DB;
 use Model\Entity\Message;
@@ -25,7 +25,7 @@ class MessageManager{
      */
     public function getAllByChatRoom(int $chatRoomId) : array {
         $request = DB::getInstance()->prepare("SELECT * FROM message WHERE chat_room_id = :chat");
-        $request->bindValue('chat',$chatRoomId);
+        $request->bindValue(':chat',$chatRoomId);
         return $this->getAllTmp($request);
     }
 
@@ -38,9 +38,14 @@ class MessageManager{
         $request = DB::getInstance()->prepare("SELECT * FROM message WHERE id = :id");
         $request->bindValue(':id',$id);
         $request->execute();
+
         $item = $request->fetch();
         if ($item){
-            return new Message($id,$item['text'],$item['date'],$item['user_id'],$item['chat_room_id']);
+            $userManager = new UserManager();
+            $chatManager = new ChatRoomManager();
+            $user = $userManager->get(intval($item['user_id']));
+            $chat = $chatManager->get(intval($item['chat_room_id']));
+            return new Message($id,$item['text'],$item['date'],$user , $chat);
 
         }
         return null;
@@ -91,7 +96,12 @@ class MessageManager{
 
         if ($chatResponse) {
             foreach ($chatResponse as $item) {
-                $chatRoom[] = new Message(intval($item['id']),$item['text'],$item['date'],$item['user_id'],$item['chat_room_id']);
+                $userManager = new UserManager();
+                $chatManager = new ChatRoomManager();
+                $user = $userManager->get(intval($item['user_id']));
+                $chat = $chatManager->get(intval($item['chat_room_id']));
+
+                $chatRoom[] = new Message(intval($item['id']),$item['text'],$item['date'],$user , $chat);
             }
         }
         return $chatRoom;

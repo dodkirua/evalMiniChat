@@ -1,7 +1,8 @@
 <?php
 
 
-namespace App\Classes\Manager;
+namespace Model\Manager;
+
 
 use Model\DB;
 use Model\Entity\PrivateMessage;
@@ -20,7 +21,12 @@ class PrivateMessageManager{
 
         if ($chatResponse) {
             foreach ($chatResponse as $item) {
-                $chatRoom[] = new PrivateMessage(intval($item['id']),$item['message_id'],$item['user_id'],$item['user2_id']);
+                $userManager = new UserManager();
+                $messageManager = new MessageManager();
+                $user1 = $userManager->get(intval($item['user_id']));
+                $user2 = $userManager->get(intval($item['user2_id']));
+                $message = $messageManager->get(intval($item['message_id']));
+                $chatRoom[] = new PrivateMessage(intval($item['id']),$message, $user1, $user2);
             }
         }
         return $chatRoom;
@@ -37,7 +43,12 @@ class PrivateMessageManager{
         $request->execute();
         $req = $request->fetch();
         if ($req){
-            return new PrivateMessage($id,$req['message_id'],$req['user_id'],$req['user2_id']);
+            $userManager = new UserManager();
+            $messageManager = new MessageManager();
+            $user1 = $userManager->get(intval($req['user_id']));
+            $user2 = $userManager->get(intval($req['user2_id']));
+            $message = $messageManager->get(intval($req['message_id']));
+            return new PrivateMessage($id, $message , $user1, $user2);
 
         }
         return null;

@@ -1,5 +1,5 @@
 <?php
-require_once "/import.php";
+require_once "import.php";
 ?>
 
 <!doctype html>

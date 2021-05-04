@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Classes\Manager;
+namespace Model\Manager;
 
 use Model\DB;
 use Model\Entity\User;

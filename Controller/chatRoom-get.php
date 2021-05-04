@@ -1,12 +1,18 @@
 <?php
+require_once "../import.php";
 
-use App\Classes\Manager\ChatRoomManager;
-use App\Classes\Manager\MessageManager;
-use App\Classes\Manager\UserManager;
+use Model\Manager\MessageManager;
 
+$messageManager = new MessageManager();
 
-$chatRoomManager = new ChatRoomManager();
-$MessageManager = new MessageManager();
-$userManager = new UserManager();
+$array = $messageManager->getAllByChatRoom(2);
+$response = [];
+foreach ($array as $item) {
+    $tab['text'] = $item['text'];
+    $tab['date'] = $item['date'];
+    $tab['user'] = $item['user']->getUsername();
+    $tab['chat_room'] = $item['chat_room']->getName();
+    $response[] = $tab;
+}
 
-$array =
+echo json_encode($response);
