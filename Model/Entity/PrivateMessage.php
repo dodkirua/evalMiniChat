@@ -3,24 +3,27 @@
 
 namespace Model\Entity;
 
+use Model\Entity\User;
+use Model\Entity\Message;
+
 class PrivateMessage{
-    private int $id;
-    private ?int $messageID;
-    private ?int $user1ID;
-    private ?int $user2ID;
+    private ?int $id;
+    private ?Message $message;
+    private ?User $user1;
+    private ?User $user2;
 
     /**
      * PrivateMessage constructor.
-     * @param int $id
+     * @param int|null $id
      * @param int|null $messageID
-     * @param int|null $user1ID
-     * @param int|null $user2ID
+     * @param \Model\Entity\User|null $user1
+     * @param \Model\Entity\User|null $user2
      */
-    public function __construct(int $id, ?int $messageID, ?int $user1ID, ?int $user2ID)    {
+    public function __construct(?int $id, ?int $messageID = null, ?User $user1 = null, ?User $user2 = null)    {
         $this->id = $id;
-        $this->messageID = $messageID;
-        $this->user1ID = $user1ID;
-        $this->user2ID = $user2ID;
+        $this->message = $messageID;
+        $this->user1 = $user1;
+        $this->user2 = $user2;
     }
 
     /**
@@ -33,68 +36,58 @@ class PrivateMessage{
 
     /**
      * set message id
-     * @return int|null
+     * @return \Model\Entity\Message|null
      */
-    public function getMessageID(): ?int    {
-        return $this->messageID;
+    public function getMessageID(): ?Message    {
+        return $this->message;
     }
 
     /**
      * get message id
-     * @param int|null $messageID
+     * @param \Model\Entity\Message|null $message
      * @return PrivateMessage
      */
-    public function setMessageID(?int $messageID): PrivateMessage    {
-        $this->messageID = $messageID;
+    public function setMessageID(?Message $message): PrivateMessage    {
+        $this->message = $message;
         return $this;
     }
 
     /**
-     * get user 1 id
-     * @return int|null
+     * get user 1
+     * @return \Model\Entity\User|null
      */
-    public function getUser1ID(): ?int    {
-        return $this->user1ID;
+    public function getUser1(): ?User    {
+        return $this->user1;
     }
 
     /**
-     * set user 1 id
-     * @param int|null $user1ID
+     * set user 1
+     * @param \Model\Entity\User|null $user1
      * @return PrivateMessage
      */
-    public function setUser1ID(?int $user1ID): PrivateMessage    {
-        $this->user1ID = $user1ID;
+    public function setUser1(?User $user1): PrivateMessage    {
+        $this->user1 = $user1;
         return $this;
     }
 
     /**
-     *
-     * @return int|null
+     * return a user 2
+     * @return \Model\Entity\User|null
      */
-    public function getUser2ID(): ?int    {
-        return $this->user2ID;
+    public function getUser2(): ?User    {
+        return $this->user2;
     }
 
     /**
-     * @param int|null $user2ID
+     * set user 2
+     * @param \Model\Entity\User|null $user2
      * @return PrivateMessage
      */
-    public function setUser2ID(?int $user2ID): PrivateMessage    {
-        $this->user2ID = $user2ID;
+    public function setUser2ID(?User $user2): PrivateMessage    {
+        $this->user2 = $user2;
         return $this;
     }
 
-    /**
-     * get a array with information
-     * @return array
-     */
-    public function getData() : array{
-        $array['id'] = $this->getId();
-        $array['message_id'] = $this->getMessageID();
-        $array['user_id'] = $this->getUser1ID();
-        $array['user2_id'] = $this->getUser2ID();
 
-        return $array;
-    }
 
 }

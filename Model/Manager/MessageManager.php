@@ -6,6 +6,7 @@ namespace App\Classes\Manager;
 use Model\DB;
 use Model\Entity\Message;
 use DateTime;
+use PDOStatement;
 
 class MessageManager{
     /**
@@ -13,17 +14,19 @@ class MessageManager{
      * @return array
      */
     public function getAll(): array {
-        $chatRoom = [];
         $request = DB::getInstance()->prepare("SELECT * FROM message");
-        $request->execute();
-        $chatResponse= $request->fetchAll();
+        return $this->getAllTmp($request);
+    }
 
-        if ($chatResponse) {
-            foreach ($chatResponse as $item) {
-                $chatRoom[] = new Message(intval($item['id']),$item['text'],$item['date'],$item['user_id'],$item['chat_room_id']);
-            }
-        }
-        return $chatRoom;
+    /**
+     * return array of message for a chatroom
+     * @param int $chatRoomId
+     * @return array
+     */
+    public function getAllByChatRoom(int $chatRoomId) : array {
+        $request = DB::getInstance()->prepare("SELECT * FROM message WHERE chat_room_id = :chat");
+        $request->bindValue('chat',$chatRoomId);
+        return $this->getAllTmp($request);
     }
 
     /**
@@ -75,4 +78,24 @@ class MessageManager{
         $request->execute();
         return intval(DB::getInstance()->lastInsertId()) !==0;
     }
+
+    /**
+     * return  a array for a getall function
+     * @param PDOStatement $request
+     * @return array
+     */
+    private function getAllTmp(PDOStatement $request) : array{
+        $chatRoom = [];
+        $request->execute();
+        $chatResponse= $request->fetchAll();
+
+        if ($chatResponse) {
+            foreach ($chatResponse as $item) {
+                $chatRoom[] = new Message(intval($item['id']),$item['text'],$item['date'],$item['user_id'],$item['chat_room_id']);
+            }
+        }
+        return $chatRoom;
+    }
 }
+
+

@@ -3,26 +3,30 @@
 
 namespace Model\Entity;
 
+
+use Model\Entity\ChatRoom;
+use Model\Entity\User;
+
 class Message{
-    private int $id;
+    private ?int $id;
     private ?string $text;
     private ?int $date;
-    private ?int $userID;
-    private ?int $chatRoom;
+    private ?User $user;
+    private ?ChatRoom $chatRoom;
 
     /**
      * Message constructor.
      * @param int $id
      * @param string|null $text
      * @param int|null $date
-     * @param int|null $userID
-     * @param int|null $chatRoom
+     * @param User|null $user
+     * @param ChatRoom|null $chatRoom
      */
-    public function __construct(int $id, ?string $text, ?int $date, ?int $userID, ?int $chatRoom)    {
+    public function __construct(int $id, ?string $text = null, ?int $date = null, ?User $user = null, ?ChatRoom $chatRoom = null)    {
         $this->id = $id;
         $this->text = $text;
         $this->date = $date;
-        $this->userID = $userID;
+        $this->user = $user;
         $this->chatRoom = $chatRoom;
     }
 
@@ -31,8 +35,7 @@ class Message{
      * @param string|null $text
      * @return Message
      */
-    public function setText(?string $text): Message
-    {
+    public function setText(?string $text): Message    {
         $this->text = $text;
         return $this;
     }
@@ -42,30 +45,27 @@ class Message{
      * @param int|null $date
      * @return Message
      */
-    public function setDate(?int $date): Message
-    {
+    public function setDate(?int $date): Message    {
         $this->date = $date;
         return $this;
     }
 
     /**
      * set user
-     * @param int|null $userID
+     * @param User|null $user
      * @return Message
      */
-    public function setUserID(?int $userID): Message
-    {
-        $this->userID = $userID;
+    public function setUserID(?User $user): Message    {
+        $this->user = $user;
         return $this;
     }
 
     /**
      * set chatroom
-     * @param int|null $chatRoom
+     * @param ChatRoom|null $chatRoom
      * @return Message
      */
-    public function setChatRoom(?int $chatRoom): Message
-    {
+    public function setChatRoom(?ChatRoom $chatRoom): Message    {
         $this->chatRoom = $chatRoom;
         return $this;
     }
@@ -95,33 +95,19 @@ class Message{
     }
 
     /**
-     * get user id
-     * @return int|null  PRIMARY KEY (`id`))
-ENGINE = InnoDB
+     * get user
+     * @return User|null
      */
-    public function getUserID(): ?int    {
-        return $this->userID;
+    public function getUser(): ?User   {
+        return $this->user;
     }
 
     /**
      * get chatroom id
-     * @return int|null
+     * @return ChatRoom|null
      */
-    public function getChatRoom(): ?int    {
+    public function getChatRoom(): ?ChatRoom    {
         return $this->chatRoom;
     }
 
-    /**
-    * get a array with information
-    * @return array
-    */
-    public function getData() : array    {
-        $array['id'] = $this->getId();
-        $array['text'] = $this->getText();
-        $array['date'] = $this->getDate();
-        $array['user_id'] = $this->getUserID();
-        $array['chat_room_id'] = $this->getChatRoom();
-
-        return $array;
-    }
 }

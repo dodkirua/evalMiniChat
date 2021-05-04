@@ -1,5 +1,5 @@
 <?php
-
+require_once "/import.php";
 ?>
 
 <!doctype html>
@@ -14,16 +14,13 @@
 <body>
     <div id="container">
         <div class="chat">
-            <form action="#" method="post" id="form">
-                <div class="area"></div>
-                
-                <div>
-                    <label for="add">Votre message</label>
-                    <input type="text" name="add" id="add">
+            <h1>Mini chat</h1>
+                <div class="area" id="area"></div>
+                <div class="interact">
+                    <label for="add"></label>
+                    <input id="add" name="message" class="message">
                     <input type="submit" value="Valider">
                 </div>
-
-            </form>
         </div>
 
     </div>
