@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Classes\Entity;
+namespace Model\Entity;
 
 class PrivateMessage{
     private int $id;

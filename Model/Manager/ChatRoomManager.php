@@ -3,8 +3,8 @@
 
 namespace App\Classes\Manager;
 
-use App\Classes\Entity\DB;
-use App\Classes\Entity\ChatRoom;
+use Model\DB;
+use Model\Entity\ChatRoom;
 
 
 class ChatRoomManager{
