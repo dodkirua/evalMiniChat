@@ -180,4 +180,21 @@ class User{
         return $this->dataAutorisation;
     }
 
+    /**
+     * return the User information in a array
+     * @return array
+     */
+    public function getAll() : array {
+        $array = [];
+        $array['id'] = $this->getId();
+        $array['username'] = $this->getUsername();
+        $array['password'] = $this->getPassword();
+        $array['mail'] = $this->getMail();
+        $array['image'] = $this->getImage();
+        $array['validation'] = $this->getValidation();
+        $array['validation_key'] = $this->getKey();
+        $array['data_autorisation'] = $this->getDataAutorisation();
+        return $array;
+    }
+
 }

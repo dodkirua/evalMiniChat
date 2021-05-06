@@ -12,6 +12,9 @@ class ConnectController extends Controller{
             $user = $_POST['username'];
             $pass = $_POST['pass'];
             $userClass = (new UserManager())->passTest($user,$pass);
+            if (!is_null($userClass)){
+
+            }
         }
         return false;
     }
