@@ -89,3 +89,24 @@ form {
 label {
     margin: 0.2rem;
 }
+
+.array {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+
+.error {
+    background: red;
+    color: aliceblue;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}

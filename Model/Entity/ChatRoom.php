@@ -44,4 +44,14 @@ class ChatRoom{
         $this->name = $name;
         return $this;
     }
+
+    /**
+     * return the Chatroom information in a array
+     * @return array
+     */
+    public function getAll() : array {
+        $array['id'] = $this->getId();
+        $array['name'] = $this->getName();
+        return $array;
+    }
 }

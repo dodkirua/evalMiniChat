@@ -6,6 +6,10 @@ use Controller\Classes\Controller;
 
 class ChatController extends Controller {
 
+    /**
+     * display the chatroom by id
+     * @param int $numChat
+     */
     public function display(int $numChat) : void {
         $var = [
           'numChat' => $numChat,
@@ -13,4 +17,6 @@ class ChatController extends Controller {
 
         $this->render('home','MiniChat',$var);
     }
+
+
 }

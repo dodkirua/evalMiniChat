@@ -22,7 +22,12 @@ if (isset($_GET['ctrl'])) {
         case 'form' :
             switch ($_GET['action']){
                 case 'connect':
-                    (new ConnectController())->testConnection();
+                    if ((new ConnectController())->testConnection()){
+                        (new HomeController())->chatSelect();
+                    }
+                    else {
+                        (new ErrorController())->connectError();
+                    }
                     break;
                 default :
                     break;
