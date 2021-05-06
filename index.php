@@ -33,7 +33,18 @@ if (isset($_GET['ctrl'])) {
                     }
                     break;
                 case 'registration' :
-                    (new RegistrationController())
+                    $return = (new RegistrationController())->registration();
+                    if ($return === 1){
+                        if ((new ConnectController())->testConnection()){
+                            (new HomeController())->chatSelect();
+                        }
+                        else {
+                            (new ErrorController())->connectError();
+                        }
+                    }
+                    else {
+                        (new ErrorController())->registrationError($return);
+                    }
                     break;
                 default :
                     break;

@@ -25,7 +25,7 @@ class User{
      * @param string|null $key
      * @param bool|null $dataAutorisation
      */
-    public function __construct(int $id, string $username , string $password, string $mail, ?string $image, ?bool $validation, ?string $key, ?bool $dataAutorisation)    {
+    public function __construct(int $id, string $username , string $password, ?string $mail, ?string $image, ?bool $validation, ?string $key, ?bool $dataAutorisation)    {
         $this->id = $id;
         $this->username = $username;
         $this->password = $password;

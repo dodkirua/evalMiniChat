@@ -19,4 +19,4 @@ require_once "Controller/Classes/RegistrationController.php";
 
 require_once "Model/DB.php";
 
-require_once "Controller/SecurityController.php";
+require_once "Controller/Classes/SecurityController.php";

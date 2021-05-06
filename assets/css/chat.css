@@ -127,3 +127,11 @@ label {
     flex-direction: row;
     justify-content: end;
 }
+
+.colorRed {
+    color: red;
+}
+
+.colorGreen {
+    color: green;
+}

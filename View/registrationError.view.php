@@ -1,5 +1,6 @@
 
 <div class="chat">
+    <div class="error"><?= $var['error'] ?></div>
     <h1>enregistrez vous</h1>
     <form action="/index.php?ctrl=form&action=registration" id="registration" method="post">
     <div>

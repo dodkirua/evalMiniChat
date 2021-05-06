@@ -2,7 +2,7 @@
 <div class="chat">
     <div class="error"><?= $var['error'] ?></div>
     <h1>Connection</h1>
-    <form action="<?= $_SERVER['DOCUMENT_ROOT'] . "/index.php?ctrl=form&action=connect" ?>">
+    <form action="/index.php?ctrl=form&action=connect" method="post">
 
         <div class="form">
             <label for="username">Username</label>

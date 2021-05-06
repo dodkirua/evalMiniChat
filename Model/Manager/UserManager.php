@@ -37,13 +37,28 @@ class UserManager{
         return $this->getTmp($request);
     }
 
-    public function passTest(string $user, string $pass) : ?User    {
+    /**
+     * research by username
+     * @param string $user
+     * @return User|null
+     */
+    public function getByUsername (string $user): ?User    {
         $request = DB::getInstance()->prepare("SELECT * FROM user WHERE username = :user");
         $request->bindValue(':user',$user);
-        $class = $this->getTmp($request);
-        if (!is_null($class)) {
-            if (password_verify($pass, $class->getPassword())) {
-                return $class;
+        return $this->getTmp($request);
+    }
+
+    /**
+     * test if pass and username are associated
+     * @param string $username
+     * @param string $pass
+     * @return User|null
+     */
+    public function passTest(string $username, string $pass) : ?User    {
+        $user = $this->getByUsername($username);
+        if (!is_null($user)) {
+            if (password_verify($pass, $user->getPassword())) {
+                return $user;
             }
         }
         return null;
@@ -65,14 +80,15 @@ class UserManager{
      * add a chatroom
      * @param string $username
      * @param string $pass
-     * @param string $mail
-     * @param string $image
+     * @param string|null $mail
+     * @param string|null $image
      * @param int $validation
-     * @param string $key
-     * @param int $dateAutorisation
+     * @param string|null $key
+     * @param int|null $dateAutorisation
      * @return bool
      */
-    public function add(string $username,string $pass, string $mail, string $image, int $validation, string $key, int $dateAutorisation): bool {
+    public function add(string $username,string $pass, string $mail = null, string $image = null, int $validation = 0
+        , string $key = null, int $dateAutorisation = null): bool {
         $request = DB::getInstance()->prepare("        
             INSERT INTO user (username, password, mail, image, validation, validation_key, data_autorisation)
             VALUES (:username, :password, :mail, :image, :validation, :key, :data_autorisation)");
