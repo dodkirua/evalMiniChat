@@ -108,5 +108,22 @@ label {
     display: flex;
     justify-content: center;
     align-items: center;
+}
 
+.link {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: end;
+    margin: 0.5rem;
+}
+
+#check {
+    font-size: 0.8rem;
+}
+
+.submit {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
 }

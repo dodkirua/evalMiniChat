@@ -12,8 +12,13 @@
             <input type="password" name="pass" id="pass">
         </div>
         <input type="submit" value="Valider">
+        <div class="link">
+            <a href="/index.php?ctrl=registration">Créer un compte</a>
+            <a href="/index.php?ctrl=passforgot">Mot de passe oublié?</a>
+        </div>
 
     </form>
+
 
 </div>
 <script src="/assets/js/connect.js"></script>

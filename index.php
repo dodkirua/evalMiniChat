@@ -2,7 +2,10 @@
 
 use Controller\Classes\ChatController;
 use Controller\Classes\ConnectController;
+use Controller\Classes\ErrorController;
+use Controller\Classes\ForgotController;
 use Controller\Classes\HomeController;
+use Controller\Classes\RegistrationController;
 
 session_start();
 
@@ -29,9 +32,19 @@ if (isset($_GET['ctrl'])) {
                         (new ErrorController())->connectError();
                     }
                     break;
+                case 'registration' :
+                    (new RegistrationController())
+                    break;
                 default :
                     break;
             }
+            break;
+        case 'registration':
+            (new RegistrationController)->display();
+            break;
+
+        case 'forgotpassword':
+            (new ForgotController)->display();
             break;
 
         default :
