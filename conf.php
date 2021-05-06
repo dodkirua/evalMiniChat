@@ -1,5 +1,5 @@
 <?php
-$host = '';
-$db = '';
-$user = '';
-$pass = '';
+$host = 'localhost';
+$db = "mini-chat";
+$user = 'dev';
+$pass = 'dev';
