@@ -9,7 +9,7 @@ use Model\Entity\User;
 
 class Message{
     private ?int $id;
-    private ?string $text;
+    private ?string $content;
     private ?int $date;
     private ?User $user;
     private ?ChatRoom $chatRoom;
@@ -22,21 +22,21 @@ class Message{
      * @param User|null $user
      * @param ChatRoom|null $chatRoom
      */
-    public function __construct(int $id, ?string $text = null, ?int $date = null, ?User $user = null, ?ChatRoom $chatRoom = null)    {
+    public function __construct(int $id, ?string $content = null, ?int $date = null, ?User $user = null, ?ChatRoom $chatRoom = null)    {
         $this->id = $id;
-        $this->text = $text;
+        $this->content = $content;
         $this->date = $date;
         $this->user = $user;
         $this->chatRoom = $chatRoom;
     }
 
     /**
-     * set text
-     * @param string|null $text
+     * set content
+     * @param string|null $content
      * @return Message
      */
-    public function setText(?string $text): Message    {
-        $this->text = $text;
+    public function setContent(?string $content): Message    {
+        $this->content = $content;
         return $this;
     }
 
@@ -79,11 +79,11 @@ class Message{
     }
 
     /**
-     * get text
+     * get content
      * @return string|null
      */
-    public function getText(): ?string    {
-        return $this->text;
+    public function getContent(): ?string    {
+        return $this->content;
     }
 
     /**

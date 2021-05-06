@@ -78,7 +78,7 @@ class MessageManager{
         $date = $date->getTimestamp();
         $request->bindValue(':date',$date);
         $request->bindValue(':user_id',$userId);
-        $request->bindValue(':user_id',$chatRoomId);
+        $request->bindValue(':chat_room_id',$chatRoomId);
 
         $request->execute();
         return intval(DB::getInstance()->lastInsertId()) !==0;

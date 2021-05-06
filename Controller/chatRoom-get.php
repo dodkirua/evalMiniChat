@@ -1,18 +1,31 @@
 <?php
-require_once "../import.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/import.php";
 
 use Model\Manager\MessageManager;
+if (isset($_GET['num'])){
+    $chat = intval($_GET['num']);
+}
+else {
+    $chat = 2;
+}
+
 
 $messageManager = new MessageManager();
 
-$array = $messageManager->getAllByChatRoom(2);
+$array = $messageManager->getAllByChatRoom($chat);
+if (!$array){
+    $array = $messageManager->getAllByChatRoom(2);
+}
 $response = [];
+
 foreach ($array as $item) {
-    $tab['text'] = $item['text'];
-    $tab['date'] = $item['date'];
-    $tab['user'] = $item['user']->getUsername();
-    $tab['chat_room'] = $item['chat_room']->getName();
+    $tab['content'] = $item->getContent();
+    $tab['date'] = $item->getDate();
+    $tab['user'] = $item->getUser()->getUsername();
+    $tab['chat_room'] = $item->getChatRoom()->getName();
     $response[] = $tab;
 }
 
 echo json_encode($response);
+
+exit;
