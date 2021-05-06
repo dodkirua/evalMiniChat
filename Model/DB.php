@@ -26,30 +26,25 @@ class DB{
          * @var String $user
          * @var String $pass
          */
-        if (!isset($host) || !isset($db) || !isset($user) || !isset($pass)){
-            if (is_null($host) || is_null($db) || is_null($user)){
-                self::$arrayError[] = "Il manque au moins une variable de connection.";
-            }
-            else {
-                if (is_null($port) || !isset($port)){
-                    $dsn = "mysql:host=$host;dbname=$db;charset=utf8";
-                }
-                else{
-                    $dsn = "mysql:host=$host;port=$port;dbname=$db;charset=utf8";
-                }
-
-                try {
-                    self::$dbInstance = new PDO($dsn, $user, $pass);
-                    self::$dbInstance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                    self::$dbInstance->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-                    self::$dbInstance->setAttribute(PDO::MYSQL_ATTR_INIT_COMMAND, 'SET NAMES utf8');
-                } catch (PDOException $exception) {
-                    self::$arrayError[] = $exception->getMessage();
-                }
-            }
+        if (is_null($host) || is_null($db) || is_null($user)){
+            self::$arrayError[] = "Il manque au moins une variable de connection.";
         }
         else {
-            self::$arrayError[] = "les variable host, db, pass ou/et user non trouvé";
+            if (!isset($port) || is_null($port) ){
+                $dsn = "mysql:host=$host;dbname=$db;charset=utf8";
+            }
+            else{
+                $dsn = "mysql:host=$host;port=$port;dbname=$db;charset=utf8";
+            }
+            var_dump($dsn);
+            try {
+                self::$dbInstance = new PDO($dsn, $user, $pass);
+                self::$dbInstance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                self::$dbInstance->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+                self::$dbInstance->setAttribute(PDO::MYSQL_ATTR_INIT_COMMAND, 'SET NAMES utf8');
+            } catch (PDOException $exception) {
+                self::$arrayError[] = $exception->getMessage();
+            }
         }
 
     }
