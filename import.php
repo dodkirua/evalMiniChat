@@ -11,8 +11,8 @@ require_once "Model/Manager/UserManager.php";
 
 require_once "Controller/Classes/Controller.php";
 require_once "Controller/Classes/ChatController.php";
-
-
+require_once "Controller/Classes/HomeController.php";
+require_once "Controller/Classes/ConnectController.php";
 
 require_once "Model/DB.php";
 

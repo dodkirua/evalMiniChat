@@ -5,6 +5,7 @@ namespace Model\Manager;
 
 use Model\DB;
 use Model\Entity\User;
+use PDOStatement;
 
 class UserManager{
     /**
@@ -33,13 +34,20 @@ class UserManager{
     public function get(int $id) : ?User{
         $request = DB::getInstance()->prepare("SELECT * FROM user WHERE id = :id");
         $request->bindValue(':id',$id);
-        $request->execute();
-        $item = $request->fetch();
-        if ($item){
-            return new User($id,$item['username'],$item['password'],$item['mail'],$item['image'],$item['validation'],$item['validation_key'],$item['data_autorisation']);
+        return $this->getTmp($request);
+    }
 
+    public function passTest(string $user, string $pass) : ?User    {
+        $request = DB::getInstance()->prepare("SELECT * FROM user WHERE username = :user");
+        $request->bindValue(':user',$user);
+        $class = $this->getTmp($request);
+        if (!is_null($class)) {
+            if (password_verify($pass, $class->getPassword())) {
+                return $class;
+            }
         }
         return null;
+
     }
 
     /**
@@ -78,5 +86,20 @@ class UserManager{
 
         $request->execute();
         return intval(DB::getInstance()->lastInsertId()) !==0;
+    }
+
+    /**
+     * return a user on a get request
+     * @param PDOStatement $request
+     * @return User|null
+     */
+    private function getTmp(PDOStatement $request) : ?User {
+        $request->execute();
+        $item = $request->fetch();
+        if ($item){
+            return new User(intval($item['id']),$item['username'],$item['password'],$item['mail'],$item['image'],$item['validation'],$item['validation_key'],$item['data_autorisation']);
+
+        }
+        return null;
     }
 }

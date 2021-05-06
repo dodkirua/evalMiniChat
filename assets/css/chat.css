@@ -69,3 +69,23 @@ body {
     justify-content: center;
     align-items: center;
 }
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: end;
+}
+
+.form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.2rem;
+    margin: 0.5rem;
+}
+
+label {
+    margin: 0.2rem;
+}

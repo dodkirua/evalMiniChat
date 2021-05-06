@@ -1,5 +1,8 @@
 <?php
 
+namespace Controller\Classes;
+
+use Controller\Classes\Controller;
 
 class ChatController extends Controller {
 
