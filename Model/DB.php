@@ -36,7 +36,6 @@ class DB{
             else{
                 $dsn = "mysql:host=$host;port=$port;dbname=$db;charset=utf8";
             }
-            var_dump($dsn);
             try {
                 self::$dbInstance = new PDO($dsn, $user, $pass);
                 self::$dbInstance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
