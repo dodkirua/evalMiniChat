@@ -12,10 +12,12 @@ class ConnectController extends Controller{
             $user = $_POST['username'];
             $pass = $_POST['pass'];
             $userClass = (new UserManager())->passTest($user,$pass);
+
             if (!is_null($userClass)){
                 foreach ($userClass->getAll() as $key => $item){
-                    $_SESSION[$key] = $item;
+                    $_SESSION['user'][$key] = $item;
                 }
+
                 return true;
             }
         }

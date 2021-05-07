@@ -19,7 +19,7 @@ if (isset($_GET['ctrl'])) {
                 (new ChatController())->display(intval($_GET['num']));
             }
             else {
-                (new ChatController())->display(2);
+                (new HomeController())->chatSelect();
             }
             break;
         case 'form' :
@@ -46,10 +46,14 @@ if (isset($_GET['ctrl'])) {
                         (new ErrorController())->registrationError($return);
                     }
                     break;
+                case 'addChat':
+                    (new ChatController())->addChat();
+                    break;
                 default :
                     break;
             }
             break;
+
         case 'registration':
             (new RegistrationController)->display();
             break;
@@ -58,6 +62,9 @@ if (isset($_GET['ctrl'])) {
             (new ForgotController)->display();
             break;
 
+        case 'addChat':
+            (new ChatController())->displayAddChat();
+            break;
         default :
             break;
     }

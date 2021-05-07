@@ -185,7 +185,6 @@ class User{
      * @return array
      */
     public function getAll() : array {
-        $array = [];
         $array['id'] = $this->getId();
         $array['username'] = $this->getUsername();
         $array['password'] = $this->getPassword();

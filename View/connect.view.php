@@ -1,7 +1,7 @@
 
 <div class="chat">
     <h1>Connection</h1>
-    <form action=/index.php?ctrl=form&action=connect" method="post">
+    <form action="/index.php?ctrl=form&action=connect" method="post">
 
         <div class="form">
             <label for="username">Username</label>
@@ -16,9 +16,6 @@
             <a href="/index.php?ctrl=registration">Créer un compte</a>
             <a href="/index.php?ctrl=passforgot">Mot de passe oublié?</a>
         </div>
-
     </form>
-
-
 </div>
 <script src="/assets/js/connect.js"></script>

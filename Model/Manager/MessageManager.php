@@ -24,6 +24,7 @@ class MessageManager{
      * @return array
      */
     public function getAllByChatRoom(int $chatRoomId) : array {
+
         $request = DB::getInstance()->prepare("SELECT * FROM message WHERE chat_room_id = :chat");
         $request->bindValue(':chat',$chatRoomId);
         return $this->getAllTmp($request);
@@ -73,7 +74,7 @@ class MessageManager{
         $request = DB::getInstance()->prepare('
             INSERT INTO message (text, date, user_id, chat_room_id)
             VALUES (:text, :date, :user_id, :chat_room_id)');
-        $request->bindValue(':text',$text);
+        $request->bindValue(':text',mb_strtolower($text));
         $date = new DateTime();
         $date = $date->getTimestamp();
         $request->bindValue(':date',$date);

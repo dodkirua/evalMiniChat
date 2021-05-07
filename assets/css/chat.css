@@ -116,6 +116,7 @@ label {
     justify-content: space-between;
     align-items: end;
     margin: 0.5rem;
+    font-size: 1.5rem;
 }
 
 #check {
@@ -134,4 +135,8 @@ label {
 
 .colorGreen {
     color: green;
+}
+
+.array {
+    margin: 0.5rem;
 }

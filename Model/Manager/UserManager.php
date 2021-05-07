@@ -44,7 +44,7 @@ class UserManager{
      */
     public function getByUsername (string $user): ?User    {
         $request = DB::getInstance()->prepare("SELECT * FROM user WHERE username = :user");
-        $request->bindValue(':user',$user);
+        $request->bindValue(':user',mb_strtolower($user));
         return $this->getTmp($request);
     }
 
@@ -55,7 +55,7 @@ class UserManager{
      * @return User|null
      */
     public function passTest(string $username, string $pass) : ?User    {
-        $user = $this->getByUsername($username);
+        $user = $this->getByUsername(mb_strtolower($username));
         if (!is_null($user)) {
             if (password_verify($pass, $user->getPassword())) {
                 return $user;
@@ -92,12 +92,12 @@ class UserManager{
         $request = DB::getInstance()->prepare("        
             INSERT INTO user (username, password, mail, image, validation, validation_key, data_autorisation)
             VALUES (:username, :password, :mail, :image, :validation, :key, :data_autorisation)");
-        $request->bindValue(':username',$username);
+        $request->bindValue(':username',mb_strtolower($username));
         $request->bindValue(':password',$pass);
-        $request->bindValue(':mail',$mail);
-        $request->bindValue(':image',$image);
-        $request->bindValue(':validation',$validation);
-        $request->bindValue(':key',$key);
+        $request->bindValue(':mail',mb_strtolower($mail));
+        $request->bindValue(':image',mb_strtolower($image));
+        $request->bindValue(':validation',mb_strtolower($validation));
+        $request->bindValue(':key',mb_strtolower($key));
         $request->bindValue(':data_autorisation',$dateAutorisation);
 
         $request->execute();

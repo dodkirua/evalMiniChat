@@ -64,7 +64,7 @@ class ChatRoomManager{
         $request = DB::getInstance()->prepare('
             INSERT INTO chat_room (name)
             VALUES (:name)');
-        $request->bindValue(':name',$name);
+        $request->bindValue(':name',mb_strtolower($name));
         $request->execute();
         return intval(DB::getInstance()->lastInsertId()) !==0;
     }

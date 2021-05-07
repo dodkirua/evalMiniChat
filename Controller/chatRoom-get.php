@@ -13,9 +13,9 @@ else {
 $messageManager = new MessageManager();
 
 $array = $messageManager->getAllByChatRoom($chat);
-if (!$array){
+/*if (!$array){
     $array = $messageManager->getAllByChatRoom(2);
-}
+}*/
 $response = [];
 
 foreach ($array as $item) {

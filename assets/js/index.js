@@ -1,5 +1,7 @@
 // display message
 const xhr = new XMLHttpRequest();
+const chat = document.getElementById('numChat');
+
 xhr.onload = function () {
     let contenu = JSON.parse(xhr.responseText);
     const area = document.getElementById("area");
@@ -10,7 +12,9 @@ xhr.onload = function () {
    });
 
 }
-xhr.open("GET","/Controller/chatRoom-get.php");
+let url = "/Controller/chatRoom-get.php?num=" + chat.value;
+
+xhr.open("GET",url);
 xhr.send();
 
 
@@ -40,6 +44,8 @@ addInput.addEventListener("keyup",function (e){
 });
 
 function send(content){
+    const userId = document.getElementById('userId');
+    const numChat = document.getElementById('numChat');
     if (content.value !== ""){
         const xhrSend = new XMLHttpRequest();
         xhrSend.onload = function() {
@@ -48,9 +54,9 @@ function send(content){
 
         let body = {
             content: content.value,
-            date: '',
-            user: 1,
-            chat_room :2
+            date : '',
+            user : userId.value,
+            chat_room : numChat.value
         }
 
         xhrSend.open("POST", "/Controller/chatRoom-send.php");
