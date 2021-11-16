@@ -1,4 +1,4 @@
-import {validatePass, validate, comparePass} from "./function/security.js";
+import {validatePass, validate, comparePass} from "function/security.js";
 
 
 

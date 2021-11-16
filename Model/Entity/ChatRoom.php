@@ -25,7 +25,6 @@ class ChatRoom{
         return $this->id;
     }
 
-
     /**
      * get name
      * @return string|null

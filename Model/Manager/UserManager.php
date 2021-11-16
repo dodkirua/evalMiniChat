@@ -62,7 +62,6 @@ class UserManager{
             }
         }
         return null;
-
     }
 
     /**
