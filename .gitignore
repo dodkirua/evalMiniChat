@@ -1,2 +1,5 @@
 conf.local.php
 /test.php
+/.idea/
+/vendor/
+/test/
